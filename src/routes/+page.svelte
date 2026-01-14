@@ -10,51 +10,47 @@
 
 <script lang="ts">
   let audio: HTMLAudioElement | null = null;
-  let isPlaying = false;
   let audioStarted = false;
 
-  function toggleMusic() {
-    if (!audio) {
-      audio = new Audio('/alamak.mp3'); // path aman
-      audio.loop = true;
-      audio.volume = 0.4;
-    }
+  function startAudio() {
+    if (audioStarted) return;
 
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play().catch(() => {});
-    }
+    audio = new Audio('/alamak.mp3');
+    audio.loop = true;
+    audio.volume = 0.4;
 
-    isPlaying = !isPlaying;
-  }
-
-  function startMusicOnce() {
-    if (!audioStarted) {
-      toggleMusic();
-      audioStarted = true;
-    }
+    audio
+      .play()
+      .then(() => {
+        audioStarted = true;
+      })
+      .catch(() => {
+        // Android kadang silent block kalau bukan user gesture
+      });
   }
 </script>
 
-<div
-  class="h-screen overflow-y-scroll snap-y scroll-smooth"
-  on:touchstart={startMusicOnce}
-  on:click={startMusicOnce}
->
+<!-- TAP AREA INVISIBLE (WAJIB UNTUK ANDROID AUDIO) -->
+<button
+  on:click={startAudio}
+  class="fixed inset-0 z-50 opacity-0"
+  aria-label="Start background music"
+></button>
+
+<div class="h-screen overflow-y-scroll snap-y scroll-smooth bg-black">
 
   <!-- PART 1 -->
-  <section class="snap h-screen flex items-center justify-center bg-black">
+  <section class="snap h-screen flex items-center justify-center">
     <img src="1.svg" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 2 (PNG LOCATION + MAP OVERLAY) -->
-  <section class="snap h-screen relative flex items-center justify-center bg-black">
+  <section class="snap h-screen relative flex items-center justify-center">
 
     <!-- PNG LOCATION -->
     <img src="part2 (1).png" class="max-w-full max-h-full" />
 
-    <!-- MAP OVERLAY (MENIMPA PNG) -->
+    <!-- MAP OVERLAY -->
     <a
       href="https://maps.google.com/?q=Anthem+Jakarta"
       target="_blank"
@@ -77,17 +73,17 @@
   </section>
 
   <!-- PART 3 -->
-  <section class="snap h-screen flex items-center justify-center bg-black">
+  <section class="snap h-screen flex items-center justify-center">
     <img src="2.svg" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 4 -->
-  <section class="snap h-screen flex items-center justify-center bg-black">
+  <section class="snap h-screen flex items-center justify-center">
     <img src="3.svg" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 5 -->
-  <section class="snap h-screen flex items-center justify-center bg-black">
+  <section class="snap h-screen flex items-center justify-center">
     <img src="4.svg" class="max-w-full max-h-full" />
   </section>
 
