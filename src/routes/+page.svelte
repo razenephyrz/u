@@ -8,29 +8,62 @@
   }
 </style>
 
-<div class="h-screen overflow-y-scroll snap-y scroll-smooth">
+<script lang="ts">
+  let audio: HTMLAudioElement | null = null;
+  let isPlaying = false;
+  let audioStarted = false;
+
+  function toggleMusic() {
+    if (!audio) {
+      audio = new Audio('/alamak.mp3'); // path aman
+      audio.loop = true;
+      audio.volume = 0.4;
+    }
+
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
+    }
+
+    isPlaying = !isPlaying;
+  }
+
+  function startMusicOnce() {
+    if (!audioStarted) {
+      toggleMusic();
+      audioStarted = true;
+    }
+  }
+</script>
+
+<div
+  class="h-screen overflow-y-scroll snap-y scroll-smooth"
+  on:touchstart={startMusicOnce}
+  on:click={startMusicOnce}
+>
 
   <!-- PART 1 -->
   <section class="snap h-screen flex items-center justify-center bg-black">
     <img src="1.svg" class="max-w-full max-h-full" />
   </section>
 
-  <!-- PART 2 (SVG + MAPS OVERLAY) -->
+  <!-- PART 2 (PNG LOCATION + MAP OVERLAY) -->
   <section class="snap h-screen relative flex items-center justify-center bg-black">
 
-    <!-- SVG -->
-    <img src="2.svg" class="max-w-full max-h-full" />
+    <!-- PNG LOCATION -->
+    <img src="part2 (1).png" class="max-w-full max-h-full" />
 
-    <!-- MAP OVERLAY -->
+    <!-- MAP OVERLAY (MENIMPA PNG) -->
     <a
       href="https://maps.google.com/?q=Anthem+Jakarta"
       target="_blank"
       class="absolute
-             top-[58%]
+             top-[29%]
              left-1/2
              -translate-x-1/2
-             w-[75%]
-             h-[26%]
+             w-[76%]
+             h-[30%]
              z-10"
     >
       <iframe
@@ -45,10 +78,15 @@
 
   <!-- PART 3 -->
   <section class="snap h-screen flex items-center justify-center bg-black">
-    <img src="3.svg" class="max-w-full max-h-full" />
+    <img src="2.svg" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 4 -->
+  <section class="snap h-screen flex items-center justify-center bg-black">
+    <img src="3.svg" class="max-w-full max-h-full" />
+  </section>
+
+  <!-- PART 5 -->
   <section class="snap h-screen flex items-center justify-center bg-black">
     <img src="4.svg" class="max-w-full max-h-full" />
   </section>
