@@ -40,13 +40,13 @@
 
   <!-- PART 1 -->
   <section class="snap h-screen flex items-center justify-center">
-    <img src="1.svg" class="max-w-full max-h-full" />
+    <img src="1.webp" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 2 (PNG + MAP) -->
   <section class="snap h-screen relative flex items-center justify-center">
 
-    <img src="part2 (1).png" class="max-w-full max-h-full" />
+    <img src="part2 (1).webp" class="max-w-full max-h-full" />
 
     <a
       href="https://maps.google.com/?q=Anthem+Jakarta"
@@ -71,17 +71,17 @@
 
   <!-- PART 3 -->
   <section class="snap h-screen flex items-center justify-center">
-    <img src="2.svg" class="max-w-full max-h-full" />
+    <img src="2.webp" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 4 -->
   <section class="snap h-screen flex items-center justify-center">
-    <img src="3.svg" class="max-w-full max-h-full" />
+    <img src="3.webp" class="max-w-full max-h-full" />
   </section>
 
   <!-- PART 5 -->
   <section class="snap h-screen flex items-center justify-center">
-    <img src="4.svg" class="max-w-full max-h-full" />
+    <img src="4.webp" class="max-w-full max-h-full" />
   </section>
 
 </div>
