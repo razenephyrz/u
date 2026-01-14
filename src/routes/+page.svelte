@@ -19,23 +19,22 @@
     audio.loop = true;
     audio.volume = 0.4;
 
-    audio
-      .play()
+    audio.play()
       .then(() => {
         audioStarted = true;
       })
-      .catch(() => {
-        // Android kadang silent block kalau bukan user gesture
-      });
+      .catch(() => {});
   }
 </script>
 
-<!-- TAP AREA INVISIBLE (WAJIB UNTUK ANDROID AUDIO) -->
-<button
-  on:click={startAudio}
-  class="fixed inset-0 z-50 opacity-0"
-  aria-label="Start background music"
-></button>
+<!-- TAP AREA (HANYA SEKALI, LALU MATI) -->
+{#if !audioStarted}
+  <button
+    on:click={startAudio}
+    class="fixed inset-0 z-50 bg-transparent"
+    aria-label="Start background music"
+  ></button>
+{/if}
 
 <div class="h-screen overflow-y-scroll snap-y scroll-smooth bg-black">
 
@@ -44,13 +43,11 @@
     <img src="1.svg" class="max-w-full max-h-full" />
   </section>
 
-  <!-- PART 2 (PNG LOCATION + MAP OVERLAY) -->
+  <!-- PART 2 (PNG + MAP) -->
   <section class="snap h-screen relative flex items-center justify-center">
 
-    <!-- PNG LOCATION -->
     <img src="part2 (1).png" class="max-w-full max-h-full" />
 
-    <!-- MAP OVERLAY -->
     <a
       href="https://maps.google.com/?q=Anthem+Jakarta"
       target="_blank"
